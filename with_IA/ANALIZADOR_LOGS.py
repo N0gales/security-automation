@@ -8,19 +8,46 @@ import matplotlib.pyplot as plt
 import sys
 import os
 
-if len(sys.argv) > 1:
-    LOG_FILE = sys.argv[1]
-else:
-    print("Uso: python analyzer_v3.py <archivo_log>")
-    sys.exit(1)
-
-if not os.path.isfile(LOG_FILE):
-    print(f"Error: no se encontró el archivo {LOG_FILE}")
-    sys.exit(1)
-
 THRESHOLD_IP = 3
 THRESHOLD_USER = 3
 INTERVAL = 60  # segundos entre análisis automáticos
+
+
+# 🔍 Función para buscar archivo dentro del proyecto
+def find_file(filename, search_path):
+    for root, dirs, files in os.walk(search_path):
+        if filename in files:
+            return os.path.join(root, filename)
+    return None
+
+
+# 📍 Detectar rutas del proyecto
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+
+# 📂 Determinar archivo de log
+if len(sys.argv) > 1:
+    LOG_FILE = sys.argv[1]
+
+    if not os.path.isfile(LOG_FILE):
+        print("[*] Archivo no encontrado en ruta directa. Buscando en el proyecto...")
+        found = find_file(LOG_FILE, PROJECT_ROOT)
+
+        if found:
+            LOG_FILE = found
+            print(f"[+] Archivo encontrado en: {LOG_FILE}")
+        else:
+            print(f"[!] No se encontró {LOG_FILE} en el proyecto.")
+            sys.exit(1)
+else:
+    LOG_FILE = find_file("logs_ssh.txt", PROJECT_ROOT)
+
+    if LOG_FILE:
+        print(f"[+] Usando archivo por defecto: {LOG_FILE}")
+    else:
+        print("[!] No se encontró logs_ssh.txt en el proyecto.")
+        sys.exit(1)
+
 
 def extract_hour(line):
     try:
@@ -30,6 +57,7 @@ def extract_hour(line):
         return hour
     except:
         return None
+
 
 def analyze_logs():
     failed_attempts_ip = defaultdict(int)
@@ -63,9 +91,10 @@ def analyze_logs():
     generate_graph(failed_attempts_ip)
     generate_alerts(failed_attempts_ip, failed_attempts_user, user_to_ips, ip_to_users, successful_logins)
 
+
 def generate_csv(failed_ip, failed_user):
     with open("report.csv", "w", newline="", encoding="utf-8") as csvfile:
-        writer = csv.writer(csvfile, delimiter=';')  # 👈 CAMBIO AQUÍ
+        writer = csv.writer(csvfile, delimiter=';')
         writer.writerow(["Type", "Identifier", "Failed Attempts"])
 
         for ip, count in failed_ip.items():
@@ -76,6 +105,7 @@ def generate_csv(failed_ip, failed_user):
 
     print("[+] CSV generado: report.csv")
 
+
 def generate_graph(failed_ip):
     df = pd.DataFrame(list(failed_ip.items()), columns=["IP", "Failed Attempts"])
     df.plot(kind="bar", x="IP", y="Failed Attempts")
@@ -83,6 +113,7 @@ def generate_graph(failed_ip):
     plt.tight_layout()
     plt.savefig("failed_attempts.png")
     print("[+] Gráfica guardada como failed_attempts.png")
+
 
 def generate_alerts(failed_ip, failed_user, user_to_ips, ip_to_users, successful_logins):
     print("\n=== ALERTAS DETECTADAS ===\n")
@@ -103,12 +134,11 @@ def generate_alerts(failed_ip, failed_user, user_to_ips, ip_to_users, successful
         if len(users) >= 3:
             print(f"[!] IP {ip} intentó múltiples usuarios: {', '.join(users)}")
 
+
 def main():
     print("🔍 Analizando logs...")
     analyze_logs()
 
+
 if __name__ == "__main__":
-    while True:
-        main()
-        print(f"\n⏳ Esperando {INTERVAL} segundos para el siguiente análisis...\n")
-        time.sleep(INTERVAL)
+    main()
