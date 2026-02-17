@@ -1,0 +1,28 @@
+Feb 10 01:12:01 server sshd[1001]: Failed password for invalid user admin from 45.83.12.10 port 53421 ssh2
+Feb 10 01:12:05 server sshd[1002]: Failed password for invalid user admin from 45.83.12.10 port 53422 ssh2
+Feb 10 01:12:09 server sshd[1003]: Failed password for invalid user admin from 45.83.12.10 port 53423 ssh2
+Feb 10 01:12:15 server sshd[1004]: Accepted password for admin from 45.83.12.10 port 53424 ssh2
+
+Feb 10 02:03:44 server sshd[1010]: Failed password for invalid user laura from 81.22.33.4 port 60001 ssh2
+Feb 10 02:03:45 server sshd[1011]: Failed password for invalid user laura from 92.44.55.6 port 60002 ssh2
+Feb 10 02:03:47 server sshd[1012]: Failed password for invalid user laura from 103.55.66.7 port 60003 ssh2
+
+Feb 10 03:14:11 server sshd[1020]: Accepted password for laura from 8.8.8.8 port 60100 ssh2
+
+Feb 10 10:45:33 server sshd[1030]: Failed password for invalid user juan from 190.12.1.5 port 51000 ssh2
+Feb 10 10:45:36 server sshd[1031]: Failed password for invalid user maria from 190.12.1.5 port 51001 ssh2
+Feb 10 10:45:40 server sshd[1032]: Failed password for invalid user carlos from 190.12.1.5 port 51002 ssh2
+Feb 10 10:45:42 server sshd[1033]: Failed password for invalid user ana from 190.12.1.5 port 51003 ssh2
+
+Feb 10 11:22:10 server sshd[1040]: Failed password for invalid user root from 172.16.0.9 port 52001 ssh2
+Feb 10 11:22:14 server sshd[1041]: Failed password for invalid user root from 172.16.0.10 port 52002 ssh2
+Feb 10 11:22:19 server sshd[1042]: Failed password for invalid user root from 172.16.0.11 port 52003 ssh2
+Feb 10 11:22:25 server sshd[1043]: Failed password for invalid user root from 172.16.0.12 port 52004 ssh2
+
+Feb 10 12:05:55 server sshd[1050]: Accepted password for maria from 192.168.1.50 port 53000 ssh2
+
+Feb 10 12:15:02 server sshd[1060]: Failed password for invalid user test from 66.77.88.9 port 54001 ssh2
+Feb 10 12:15:05 server sshd[1061]: Failed password for invalid user test from 66.77.88.9 port 54002 ssh2
+Feb 10 12:15:08 server sshd[1062]: Failed password for invalid user test from 66.77.88.9 port 54003 ssh2
+Feb 10 12:15:12 server sshd[1063]: Failed password for invalid user test from 66.77.88.9 port 54004 ssh2
+Feb 10 12:15:18 server sshd[1064]: Accepted password for test from 66.77.88.9 port 54005 ssh2
