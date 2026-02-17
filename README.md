@@ -22,7 +22,10 @@ security-automation/
 │
 ├── with_IA/
 │ └──ANALIZADOR_LOGS.py
+│ └──README_ANALIZADOR_LOGS.md
 │ └──WORDLIST_PASS_ef_v1.py
+│ └──README_WORDLIST.md
+│
 └── without_IA/
   └──login_anomaly_detector.py
   └──login_anomaly_detector_file.py
