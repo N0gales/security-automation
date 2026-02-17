@@ -13,6 +13,7 @@ logs = [
     "192.168.1.10,LOGIN_SUCCESS",
     "192.168.1.12,LOGIN_SUCCESS",
     "192.168.1.15,LOGIN_FAILED",
+    "192.168.1.15,LOGIN_FAILED",
     "192.168.1.15,LOGIN_SUCCESS",
     "192.168.1.25,LOGIN_FAILED",
     "192.168.1.25,LOGIN_FAILED",
@@ -56,6 +57,39 @@ def evaluate_rules(ips):
             print(ip, "👀 Suspicious IP due to multiple failed attempts")
 
 
+def risk_score(ips):
+    risk_report = {}
+    for ip in ips:
+        failed = ips[ip]["failed"]
+        success = ips[ip]["success"]
+        last_event = ips[ip]["last_event"]
+
+        score = failed * 2
+
+        if failed >= 3:
+            score += 3
+
+        if failed >= 3 and last_event == "LOGIN_SUCCESS":
+            score += 5
+
+        if score < 4:
+            level = "Low"
+        elif score < 9:
+            level = "Medium"
+        else:
+            level = "High"
+
+        risk_report[ip] = {
+            "score": score,
+            "level": level
+        }
+
+    return risk_report
+
 if __name__ == "__main__":
     ips = build_state(logs)
     evaluate_rules(ips)
+    risk = risk_score(ips)
+    for ip in risk:
+        print(ip, "→", risk[ip]["level"], "(Score:", risk[ip]["score"],")")
+
