@@ -1,108 +1,86 @@
-# 🔐 Security Automation Projects
+# 🛡️ Security Automation Repository
 
-Repositorio orientado al desarrollo progresivo de herramientas de automatización en ciberseguridad utilizando Python.
+Este repositorio recoge mi proceso de aprendizaje en **automatización aplicada a ciberseguridad**, mediante el desarrollo de herramientas en Python orientadas a tareas comunes dentro de un SOC (Security Operations Center).
 
-El objetivo es evolucionar desde scripting básico hacia motores de análisis estructurados y modulares alineados con perfiles como:
+Aunque actualmente no dispongo de conocimientos avanzados en programación, esto no me impide trabajar sobre ideas interesantes relacionadas con la automatización de análisis de datos, logs y eventos de seguridad.
 
-- Junior Security Engineer  
-- SOC / Detection Analyst  
-- Security Automation Engineer  
-- Pentester técnico orientado a automatización  
+Para ello, estoy utilizando dos enfoques paralelos:
 
-Este repositorio refleja aprendizaje práctico, diseño modular y modelado de comportamiento en sistemas de seguridad.
+- Desarrollo asistido con Inteligencia Artificial  
+- Desarrollo manual paso a paso  
 
----
-
-# 🧠 Enfoque Técnico
-
-Los proyectos incluidos no se limitan a ejercicios aislados.  
-Están diseñados para simular escenarios reales de:
-
-- Procesamiento de logs
-- Análisis stateful de eventos
-- Modelado de comportamiento por entidad (IP)
-- Aplicación de reglas de detección
-- Clasificación de riesgo
-- Análisis secuencial de eventos
-
-Cada proyecto sigue principios de:
-- Separación de responsabilidades
-- Modularidad
-- Extensibilidad
-- Diseño limpio de código
+El objetivo es poder llevar a cabo proyectos funcionales mientras desarrollo progresivamente mis propias habilidades como programadora en Python aplicada a ciberseguridad.
 
 ---
 
-# 📂 Estructura del Repositorio
-
-```
+## 📁 Estructura del Repositorio
 security-automation/
-│
 ├── data/
-│   └── logs.txt
+│ └──logs.txt
+│ └──logs_ssh.txt
 │
-├── login_anomaly_detector.py
-├── login_anomaly_detector_file.py
-└── README.md
-```
+├── with_IA/
+│ └──ANALIZADOR_LOGS.py
+│ └──WORDLIST_PASS_ef_v1.py
+└── without_IA/
+  └──login_anomaly_detector.py
+  └──login_anomaly_detector_file.py
+  
 
 ---
 
-# 🛡️ Proyecto Principal: Login Anomaly Detector
+## 📊 Carpeta `data/`
 
-Motor de detección de anomalías en autenticaciones.
+La carpeta `data/` está destinada al almacenamiento de:
 
-Incluye dos versiones:
+- Archivos de logs (`.txt`, `.log`, etc.)
+- Datos de entrada para análisis
+- Ficheros utilizados por las distintas herramientas del repositorio
 
-### 1️⃣ Versión básica (`login_anomaly_detector.py`)
-- Logs simulados en memoria
-- Construcción de estado por IP
-- Detección de múltiples intentos fallidos
-- Clasificación de riesgo
+Aquí se almacenarán todos los archivos que posteriormente serán procesados por los scripts desarrollados en las carpetas `with_IA` y `without_IA`.
 
-### 2️⃣ Versión con ingestión de archivo (`login_anomaly_detector_file.py`)
-- Lectura de logs desde archivo (`data/logs.txt`)
-- Modelado stateful por IP
-- Detección de:
-  - Múltiples intentos fallidos
-  - Posible brute force exitoso
-  - Patrón secuencial (3 fallos consecutivos + éxito)
-- Sistema de scoring (Low / Medium / High)
-- Presentación estructurada de resultados
+Esta separación permite trabajar con distintos datasets sin modificar la lógica de análisis de las herramientas.
 
 ---
 
-# 🏗️ Arquitectura General
+## 🤖 Carpeta `with_IA/`
 
-El motor está dividido en fases independientes:
+En esta carpeta se incluyen proyectos desarrollados con la asistencia de Inteligencia Artificial.
 
-1. Construcción de estado (`build_state`)
-2. Evaluación de reglas (`evaluate_rules`)
-3. Cálculo de riesgo (`risk_score`)
-4. Detección secuencial (`detect_sequential_bruteforce`)
-5. Orquestación en `main`
+El objetivo de estos proyectos es:
 
-Esto permite:
+- Explorar ideas de automatización de forma más ágil
+- Comprender la lógica detrás de herramientas de análisis de seguridad
+- Aprender a utilizar la IA como herramienta de apoyo en el desarrollo técnico
 
-- Añadir nuevas reglas fácilmente
-- Implementar motores adicionales
-- Separar análisis cuantitativo y secuencial
-- Reutilizar funciones en otros contextos
+Estos proyectos me permiten implementar soluciones funcionales incluso mientras continúo desarrollando mis habilidades en programación.
 
 ---
 
-# 🎯 Objetivo Profesional
+## 🧠 Carpeta `without_IA/`
 
-Este repositorio demuestra:
+Esta carpeta contiene proyectos desarrollados manualmente, sin asistencia directa de IA.
 
-- Modelado stateful con diccionarios anidados
-- Pensamiento orientado a detección
-- Separación entre datos y lógica
-- Diseño modular escalable
-- Automatización aplicada a seguridad
+Aquí se incluyen scripts que voy creando paso a paso conforme avanzo en:
 
-Refleja transición de scripting básico hacia ingeniería de detección.
+- Python aplicado a ciberseguridad
+- Análisis de logs
+- Procesamiento de datos
+- Automatización de tareas en entornos SOC
+
+El objetivo es reforzar mi comprensión de la lógica de programación y desarrollar mis propias herramientas desde cero.
 
 ---
+
+## 🎯 Objetivo General
+
+Este repositorio refleja mi enfoque de aprendizaje basado en:
+
+- Implementar ideas de automatización desde fases tempranas
+- Aprovechar la IA como soporte técnico
+- Desarrollar paralelamente mis propias capacidades como programadora
+- Aplicar estos conocimientos al análisis de eventos de seguridad
+
+A medida que avance en conocimientos, los proyectos evolucionarán en complejidad y autonomía de desarrollo.
 
 Autor: N0gales
