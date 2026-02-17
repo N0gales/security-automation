@@ -8,21 +8,6 @@ This script processes login events and detects:
 Author: N0gales
 """
 
-
-logs = [
-    "192.168.1.10,LOGIN_SUCCESS",
-    "192.168.1.12,LOGIN_SUCCESS",
-    "192.168.1.15,LOGIN_FAILED",
-    "192.168.1.15,LOGIN_FAILED",
-    "192.168.1.15,LOGIN_SUCCESS",
-    "192.168.1.25,LOGIN_FAILED",
-    "192.168.1.25,LOGIN_FAILED",
-    "192.168.1.25,LOGIN_FAILED",
-    "192.168.1.30,LOGIN_FAILED",
-    "192.168.1.30,LOGIN_FAILED",
-    "192.168.1.30,LOGIN_FAILED",
-    "192.168.1.30,LOGIN_SUCCESS",
-]
 def build_state(logs):
     ips = {}
     for line_log in logs:
@@ -33,13 +18,15 @@ def build_state(logs):
                 ips[ip] = {
                     "failed": 1,
                     "success": 0,
-                    "last_event": login
+                    "last_event": login,
+                    "events": [login]
                 }
             else:
                 ips[ip] = {
                     "failed": 0,
                     "success": 1,
-                    "last_event": login
+                    "last_event": login,
+                    "events": [login]
                 }
         else:
             if login == "LOGIN_FAILED":
@@ -48,6 +35,13 @@ def build_state(logs):
                 ips[ip]["success"] += 1
             ips[ip]["last_event"] = login
     return ips
+
+def detect_sequential_bruteforce(ips):
+    for ip in ips:
+        events = ips[ip]["events"]
+
+        if events == ["LOGIN_FAILED", "LOGIN_FAILED", "LOGIN_FAILED", "LOGIN_SUCCESS"]:
+            print(ip, "🔥 Sequential brute force detected")
 
 def evaluate_rules(ips):
     for ip in ips:
@@ -87,9 +81,19 @@ def risk_score(ips):
     return risk_report
 
 if __name__ == "__main__":
+
+    with open("data/logs.txt", "r") as file:
+        lines = file.readlines()
+
+    logs = []
+    for line in lines:
+        logs.append(line.strip())
+
     ips = build_state(logs)
     evaluate_rules(ips)
     risk = risk_score(ips)
-    for ip in risk:
-        print(ip, "→", risk[ip]["level"], "(Score:", risk[ip]["score"],")")
+    detect_sequential_bruteforce(ips)
 
+    for ip in risk:
+        print(ip, "→", risk[ip]["level"], "(Score:", risk[ip]["score"], ")")
+    
