@@ -43,17 +43,13 @@ El script:
 ---
 
 ## 📁 Estructura del Proyecto
-
-
+```
 security-automation/
 ├── data/
-
 │ └── logs_ssh.txt
-
 └── with_IA/
-
 └── ANALIZADOR_LOGS.py
-
+```
 
 La carpeta `data/` contiene los archivos de logs que serán analizados por las herramientas desarrolladas en el repositorio.
 
