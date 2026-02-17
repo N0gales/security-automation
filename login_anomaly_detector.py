@@ -1,13 +1,26 @@
 """
 Basic Stateful Login Detection Engine
 
-This script processes login events and detects:
-- Multiple failed login attempts
-- Possible brute force attacks (failed attempts followed by success)
+This script implements a simple stateful authentication monitoring engine
+using in-memory log data.
+
+Features:
+
+- Tracks login attempts per IP address
+- Counts failed and successful authentication events
+- Stores last observed event per IP
+- Detects multiple failed login attempts
+- Identifies potential brute force behavior
+- Applies a basic risk scoring model (Low / Medium / High)
+
+The engine separates state construction from rule evaluation,
+demonstrating modular design and foundational detection logic.
+
+This implementation focuses on modeling behavior and detection
+mechanisms using structured dictionaries and event analysis.
 
 Author: N0gales
 """
-
 
 logs = [
     "192.168.1.10,LOGIN_SUCCESS",
@@ -23,6 +36,7 @@ logs = [
     "192.168.1.30,LOGIN_FAILED",
     "192.168.1.30,LOGIN_SUCCESS",
 ]
+
 def build_state(logs):
     ips = {}
     for line_log in logs:
