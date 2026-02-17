@@ -1,69 +1,70 @@
-# 🔐 Security Automation Projects
+# 🔐 Proyectos de Automatización en Seguridad
 
-This repository contains my security-focused automation projects built with Python.
+Este repositorio contiene proyectos de automatización enfocados en ciberseguridad desarrollados en Python.
 
-The goal of this repository is to progressively develop practical tooling aligned with roles such as:
+El objetivo es evolucionar progresivamente desde scripting básico hacia herramientas estructuradas orientadas a roles como:
 
 - Junior Security Engineer
-- SOC / Detection Analyst
+- Analista SOC / Detection Analyst
 - Security Automation Engineer
-- Technical Pentester
+- Pentester técnico con enfoque en automatización
 
-Each project focuses on applying Python to model state, analyze events, and implement detection logic.
+Cada proyecto aplica conceptos como:
+
+- Modelado de estado
+- Análisis de eventos
+- Lógica de detección
+- Diseño modular de código
+- Automatización de procesos de seguridad
 
 ---
 
-## 📂 Projects
+## 📂 Proyectos Incluidos
 
 ### 🛡️ Login Anomaly Detector
-A basic stateful login detection engine that:
 
-- Tracks failed and successful login attempts per IP
-- Detects multiple failed attempts
-- Identifies potential brute-force attacks (failed attempts followed by success)
-- Implements modular structure (state builder + rule evaluator)
+Motor básico de detección de anomalías en intentos de login que:
 
-> Future improvements:
-> - Risk scoring per IP
-> - Event sequence modeling
-> - Timestamp-based analysis
-> - CLI support
-> - Log file ingestion
+- Rastrea intentos fallidos y exitosos por IP
+- Detecta múltiples intentos fallidos
+- Identifica posibles ataques de fuerza bruta (múltiples fallos seguidos de éxito)
+- Implementa estructura modular (construcción de estado + evaluación de reglas)
 
 ---
 
-## 🎯 Purpose
+## 🎯 Enfoque del Repositorio
 
-This repository reflects my progression from basic scripting to structured security tooling.
+Estos proyectos no están orientados únicamente a ejercicios tipo CTF, sino a simular escenarios más cercanos a automatización real en entornos de seguridad.
 
-Rather than focusing only on CTF-style exercises, these projects aim to:
+El objetivo es:
 
-- Model system behavior
-- Automate analysis processes
-- Apply detection logic
-- Develop structured and modular Python code
-
----
-
-## 🚀 Continuous Development
-
-Projects will evolve over time:
-- Refactoring
-- Additional detection rules
-- Risk scoring engines
-- More realistic log simulation
-- Real-world log parsing
+- Modelar comportamiento de sistemas
+- Automatizar análisis de eventos
+- Aplicar reglas de detección
+- Construir código estructurado y mantenible
 
 ---
 
-## 🧠 Tech Focus
+## 🚀 Evolución Continua
+
+Los proyectos se irán ampliando con:
+
+- Sistemas de scoring de riesgo
+- Análisis basado en secuencia de eventos
+- Procesamiento de logs reales
+- Soporte para entrada desde archivo
+- Implementación tipo CLI
+
+---
+
+## 🧠 Tecnologías y Conceptos
 
 - Python
-- Stateful analysis
-- Detection logic
-- Security automation concepts
-- Modular code design
+- Diccionarios y modelado de estado
+- Lógica de detección
+- Automatización en seguridad
+- Diseño modular
 
 ---
 
-Author: N0gales
+Autor: N0gales
