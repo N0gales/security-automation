@@ -47,8 +47,11 @@ El script:
 
 security-automation/
 ├── data/
+
 │ └── logs_ssh.txt
+
 └── with_IA/
+
 └── ANALIZADOR_LOGS.py
 
 
