@@ -14,6 +14,7 @@ El objetivo es poder llevar a cabo proyectos funcionales mientras desarrollo pro
 ---
 
 ## 📁 Estructura del Repositorio
+```
 security-automation/
 ├── data/
 │ └──logs.txt
@@ -25,7 +26,7 @@ security-automation/
 └── without_IA/
   └──login_anomaly_detector.py
   └──login_anomaly_detector_file.py
-  
+```
 
 ---
 
